@@ -1,653 +1,588 @@
-@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:wght@400;700&family=Permanent+Marker&display=swap');
-
-/* ══════════════════════════════════════════
-   COMIC BOOK THEME — M-5 Resonansi Elastis Gas
-   ══════════════════════════════════════════ */
-
-:root {
-  --bg:       #fef9e7;
-  --panel:    #fff;
-  --ink:      #1a1a2e;
-  --yellow:   #ffd700;
-  --red:      #e63946;
-  --blue:     #457b9d;
-  --green:    #2dc653;
-  --orange:   #f77f00;
-  --pink:     #ff6b9d;
-  --shadow:   4px 4px 0px var(--ink);
-  --shadow-lg:6px 6px 0px var(--ink);
-  --border:   3px solid var(--ink);
-  --font-hero:'Bangers', cursive;
-  --font-body:'Comic Neue', cursive;
-  --font-marker:'Permanent Marker', cursive;
-  --radius: 8px;
-}
-
-/* ── HALFTONE BACKGROUND ── */
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  background-color: var(--bg);
-  background-image:
-    radial-gradient(circle, #c8b8a2 1px, transparent 1px);
-  background-size: 14px 14px;
-  font-family: var(--font-body);
-  color: var(--ink);
-  min-height: 100vh;
-  padding-bottom: 100px;
-}
-
-/* ── HEADER ── */
-header {
-  background: var(--yellow);
-  border-bottom: 4px solid var(--ink);
-  padding: 28px 24px 20px;
-  position: relative;
-  overflow: hidden;
-  text-align: center;
-}
-
-header::before {
-  content: '★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★';
-  position: absolute;
-  top: 6px; left: 0; right: 0;
-  font-size: 10px;
-  color: var(--ink);
-  opacity: 0.25;
-  letter-spacing: 4px;
-}
-
-header::after {
-  content: '';
-  position: absolute;
-  bottom: -8px; left: -10px; right: -10px;
-  height: 10px;
-  background: repeating-linear-gradient(
-    90deg,
-    var(--ink) 0px, var(--ink) 10px,
-    transparent 10px, transparent 20px
-  );
-}
-
-.badge {
-  display: inline-block;
-  background: var(--red);
-  color: #fff;
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  padding: 4px 12px;
-  border: 2px solid var(--ink);
-  box-shadow: 3px 3px 0 var(--ink);
-  border-radius: 4px;
-  margin-bottom: 12px;
-}
-
-header h1 {
-  font-family: var(--font-hero);
-  font-size: clamp(36px, 8vw, 72px);
-  letter-spacing: 3px;
-  color: var(--ink);
-  line-height: 1;
-  text-shadow: 4px 4px 0 var(--red), 8px 8px 0 rgba(0,0,0,0.15);
-  margin-bottom: 8px;
-}
-
-header p {
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 13px;
-  color: var(--ink);
-  background: rgba(255,255,255,0.7);
-  display: inline-block;
-  padding: 3px 12px;
-  border: 2px solid var(--ink);
-  border-radius: 20px;
-}
-
-/* ── MAIN ── */
-main {
-  max-width: 960px;
-  margin: 32px auto;
-  padding: 0 16px;
-}
-
-/* ── SECTIONS (comic panels) ── */
-.section {
-  background: var(--panel);
-  border: 3px solid var(--ink);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-lg);
-  padding: 22px 20px;
-  margin-bottom: 28px;
-  position: relative;
-}
-
-.section::before {
-  content: '';
-  position: absolute;
-  top: -3px; left: 12px; right: 12px; bottom: -3px;
-  border-left: 3px solid var(--ink);
-  border-right: 3px solid var(--ink);
-  pointer-events: none;
-  z-index: -1;
-}
-
-.section-title {
-  font-family: var(--font-hero);
-  font-size: 26px;
-  letter-spacing: 2px;
-  color: var(--ink);
-  border-bottom: 3px solid var(--ink);
-  padding-bottom: 8px;
-  margin-bottom: 18px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.section-title::before {
-  content: '▶';
-  color: var(--red);
-  font-size: 18px;
-}
-
-/* ── CONSTANTS GRID ── */
-.constants-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 14px;
-}
-
-.const-item {
-  background: #f0f4ff;
-  border: 2px solid var(--ink);
-  border-radius: 6px;
-  padding: 10px 12px;
-  box-shadow: 3px 3px 0 var(--ink);
-}
-
-.const-label {
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 11px;
-  color: var(--blue);
-  margin-bottom: 6px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.const-input {
-  width: 100%;
-  background: #fff;
-  border: 2px solid var(--ink);
-  border-radius: 4px;
-  padding: 6px 8px;
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 14px;
-  color: var(--ink);
-  outline: none;
-  transition: box-shadow 0.15s;
-}
-
-.const-input:focus {
-  box-shadow: 3px 3px 0 var(--blue);
-}
-
-/* ── PISTON TABS ── */
-.piston-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 18px;
-}
-
-.ptab {
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  padding: 8px 14px;
-  border: 2.5px solid var(--ink);
-  border-radius: 6px;
-  background: #fff;
-  color: var(--ink);
-  cursor: pointer;
-  box-shadow: 3px 3px 0 var(--ink);
-  transition: all 0.1s;
-}
-
-.ptab:hover {
-  background: var(--yellow);
-  transform: translate(-1px, -1px);
-  box-shadow: 4px 4px 0 var(--ink);
-}
-
-.ptab.active {
-  background: var(--ink);
-  color: var(--yellow);
-  box-shadow: none;
-  transform: translate(3px, 3px);
-}
-
-/* ── VOLUME PANELS ── */
-.vol-panel {
-  border: 2.5px solid var(--ink);
-  border-radius: 6px;
-  margin-bottom: 12px;
-  overflow: hidden;
-  box-shadow: 3px 3px 0 var(--ink);
-}
-
-.vol-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
-  background: #e8f4fd;
-  border-bottom: 2.5px solid var(--ink);
-  cursor: pointer;
-  user-select: none;
-}
-
-.vol-header.open {
-  background: #dff0d8;
-}
-
-.vol-header:hover {
-  filter: brightness(0.95);
-}
-
-.vol-badge {
-  font-family: var(--font-hero);
-  font-size: 18px;
-  letter-spacing: 1px;
-  color: var(--ink);
-}
-
-.vol-count {
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 11px;
-  background: var(--blue);
-  color: #fff;
-  border-radius: 20px;
-  padding: 2px 9px;
-  border: 1.5px solid var(--ink);
-}
-
-.vol-toggle {
-  margin-left: auto;
-  font-size: 14px;
-  color: var(--ink);
-  font-weight: 700;
-}
-
-.vol-body { padding: 12px 14px; }
-.vol-body.collapsed { display: none; }
-
-/* ── DATA ROWS ── */
-.data-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 6px 8px;
-  border-radius: 5px;
-  margin-bottom: 6px;
-  background: #fafafa;
-  border: 1.5px dashed #ccc;
-}
-
-.data-row:hover { border-color: var(--blue); background: #f0f4ff; }
-
-.row-num {
-  font-family: var(--font-hero);
-  font-size: 18px;
-  color: var(--red);
-  min-width: 20px;
-  text-align: center;
-}
-
-.data-input-group {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex: 1;
-  flex-wrap: wrap;
-}
-
-.inp-label {
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 11px;
-  color: var(--ink);
-  background: var(--yellow);
-  border: 1.5px solid var(--ink);
-  border-radius: 4px;
-  padding: 2px 7px;
-}
-
-.data-input-group input[type="number"] {
-  width: 100px;
-  background: #fff;
-  border: 2px solid var(--ink);
-  border-radius: 4px;
-  padding: 5px 8px;
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 13px;
-  color: var(--ink);
-  outline: none;
-}
-
-.data-input-group input:focus {
-  box-shadow: 2px 2px 0 var(--blue);
-}
-
-.btn-del {
-  background: var(--red);
-  color: #fff;
-  border: 2px solid var(--ink);
-  border-radius: 4px;
-  width: 28px; height: 28px;
-  font-size: 16px;
-  font-weight: 700;
-  cursor: pointer;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 2px 2px 0 var(--ink);
-  transition: all 0.1s;
-  flex-shrink: 0;
-}
-
-.btn-del:hover {
-  transform: translate(-1px,-1px);
-  box-shadow: 3px 3px 0 var(--ink);
-}
-
-/* ── ADD ROW BUTTON ── */
-.btn-add-row {
-  margin-top: 8px;
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 12px;
-  padding: 6px 14px;
-  border: 2px solid var(--green);
-  background: #e8fdf0;
-  color: var(--green);
-  border-radius: 5px;
-  cursor: pointer;
-  box-shadow: 2px 2px 0 var(--green);
-  transition: all 0.1s;
-}
-
-.btn-add-row:hover {
-  background: var(--green);
-  color: #fff;
-  transform: translate(-1px,-1px);
-  box-shadow: 3px 3px 0 var(--ink);
-}
-
-/* ── BUTTONS ── */
-.btn-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 18px;
-}
-
-.btn {
-  font-family: var(--font-hero);
-  font-size: 18px;
-  letter-spacing: 1px;
-  padding: 10px 22px;
-  border: 3px solid var(--ink);
-  border-radius: 6px;
-  cursor: pointer;
-  box-shadow: var(--shadow);
-  transition: all 0.1s;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.btn:hover {
-  transform: translate(-2px,-2px);
-  box-shadow: 6px 6px 0 var(--ink);
-}
-
-.btn:active {
-  transform: translate(3px,3px);
-  box-shadow: 1px 1px 0 var(--ink);
-}
-
-.btn-primary {
-  background: var(--red);
-  color: #fff;
-}
-
-.btn-secondary {
-  background: var(--blue);
-  color: #fff;
-}
-
-.btn-ghost {
-  background: #fff;
-  color: var(--ink);
-}
-
-/* ── SELECT ── */
-.styled-sel {
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 13px;
-  padding: 7px 12px;
-  border: 2.5px solid var(--ink);
-  border-radius: 6px;
-  background: #fff;
-  color: var(--ink);
-  box-shadow: 3px 3px 0 var(--ink);
-  cursor: pointer;
-  outline: none;
-}
-
-/* ── RESULT TABLE ── */
-.table-scroll {
-  overflow-x: auto;
-  border: 2.5px solid var(--ink);
-  border-radius: 6px;
-  box-shadow: var(--shadow);
-}
-
-.result-tbl {
-  width: 100%;
-  border-collapse: collapse;
-  font-family: var(--font-body);
-  font-size: 13px;
-}
-
-.result-tbl th {
-  background: var(--ink);
-  color: var(--yellow);
-  font-family: var(--font-hero);
-  font-size: 15px;
-  letter-spacing: 1px;
-  padding: 10px 12px;
-  text-align: center;
-  white-space: nowrap;
-  border: 1.5px solid #333;
-}
-
-.result-tbl td {
-  padding: 7px 10px;
-  border: 1.5px solid #ddd;
-  text-align: center;
-  font-weight: 700;
-}
-
-.result-tbl tr:nth-child(even) td { background: #fafafa; }
-.result-tbl tr:hover td { background: #fff9d0; }
-
-.td-vol {
-  background: #fff0f0 !important;
-  font-family: var(--font-hero);
-  font-size: 16px;
-  color: var(--red);
-}
-
-.td-hi {
-  color: var(--green);
-  font-weight: 700;
-}
-
-.td-dim { color: #888; }
-
-/* ── SUMMARY ROW ── */
-.summary-row {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin-top: 20px;
-}
-
-.summary-box {
-  flex: 1;
-  min-width: 120px;
-  border: 3px solid var(--ink);
-  border-radius: 8px;
-  padding: 14px 16px;
-  background: #fff;
-  box-shadow: var(--shadow);
-  text-align: center;
-  position: relative;
-}
-
-.summary-box::before {
-  content: '';
-  position: absolute;
-  top: 4px; left: 4px; right: -4px; bottom: -4px;
-  background: var(--ink);
-  border-radius: 8px;
-  z-index: -1;
-}
-
-.sb-ksr { background: #fff0e8; }
-.sb-graf { background: #e8f8ff; }
-.sb-r2 { background: #f0ffe8; }
-
-.sb-label {
-  font-family: var(--font-body);
-  font-weight: 700;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #888;
-  margin-bottom: 4px;
-}
-
-.sb-value {
-  font-family: var(--font-hero);
-  font-size: 28px;
-  letter-spacing: 1px;
-  color: var(--ink);
-  line-height: 1;
-  margin-bottom: 4px;
-}
-
-.sb-unit {
-  font-family: var(--font-body);
-  font-size: 10px;
-  color: #999;
-}
-
-/* ── CHARTS GRID ── */
-.charts-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 18px;
-}
-
-.chart-card {
-  border: 3px solid var(--ink);
-  border-radius: 8px;
-  padding: 14px;
-  background: #fff;
-  box-shadow: var(--shadow);
-}
-
-.chart-card-title {
-  font-family: var(--font-hero);
-  font-size: 17px;
-  letter-spacing: 1px;
-  color: var(--ink);
-  margin-bottom: 10px;
-  text-align: center;
-  background: var(--yellow);
-  border: 2px solid var(--ink);
-  border-radius: 5px;
-  padding: 4px 10px;
-}
-
-/* ── STATUS BAR ── */
-.status-bar {
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--green);
-  color: #fff;
-  font-family: var(--font-hero);
-  font-size: 18px;
-  letter-spacing: 1px;
-  padding: 10px 28px;
-  border: 3px solid var(--ink);
-  border-radius: 30px;
-  box-shadow: var(--shadow-lg);
-  display: none;
-  z-index: 999;
-  animation: pop-in 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-@keyframes pop-in {
-  from { transform: translateX(-50%) scale(0.7); opacity: 0; }
-  to   { transform: translateX(-50%) scale(1); opacity: 1; }
-}
-
-/* ── SPEECH BUBBLE EFFECT ON RESULTS ── */
-#results-section .section-title::after {
-  content: '!';
-  display: inline-block;
-  background: var(--red);
-  color: #fff;
-  font-family: var(--font-hero);
-  font-size: 16px;
-  width: 26px; height: 26px;
-  border-radius: 50%;
-  border: 2px solid var(--ink);
-  line-height: 22px;
-  text-align: center;
-  margin-left: 6px;
-}
-
-/* ── SCROLLBAR ── */
-::-webkit-scrollbar { width: 8px; height: 8px; }
-::-webkit-scrollbar-track { background: #f0ede0; }
-::-webkit-scrollbar-thumb {
-  background: var(--ink);
-  border-radius: 4px;
-  border: 2px solid #f0ede0;
-}
-
-/* ── RESPONSIVE ── */
-@media (max-width: 600px) {
-  header h1 { font-size: 40px; }
-  .constants-grid { grid-template-columns: 1fr 1fr; }
-  .data-input-group { gap: 4px; }
-  .data-input-group input { width: 80px; }
-  .btn { font-size: 15px; padding: 9px 16px; }
-  .charts-grid { grid-template-columns: 1fr; }
+// ─────────────────────────────────────────────
+//  M-5 Resonansi Elastis Gas · script.js
+// ─────────────────────────────────────────────
+
+const VOLUMES   = [10, 20, 30, 40, 50, 60]; // mL
+const TAB_NAMES = [
+  '1 Piston – Tutup Tutup',
+  '1 Piston – Tutup Buka',
+  '2 Piston – Tutup Tutup',
+  '2 Piston – Tutup Buka',
+];
+
+// Sample data: [f_Hz, y_cm] per row, grouped by volume (3 rows each)
+const SAMPLE = [
+  // T0: 1 Piston Tutup-Tutup
+  [[11.1,0.05],[14.4,0.2],[15.1,0.1],   // V=10
+   [16.3,0.4],[17.6,0.4],[18.5,0.5],    // V=20
+   [17.1,0.4],[18.2,0.5],[19.3,0.6],    // V=30
+   [19.4,0.8],[20.4,0.9],[21.7,0.6],    // V=40
+   [23.7,0.4],[22.6,0.6],[20.6,0.6],    // V=50
+   [21.4,0.3],[20.9,0.2],[22.0,0.4]],   // V=60
+
+  // T1: 1 Piston Tutup-Buka
+  [[11.4,0.05],[12.3,0.1],[13.8,0.1],
+   [14.7,0.4],[15.7,0.3],[17.5,0.4],
+   [17.7,0.2],[16.5,0.4],[14.7,0.9],
+   [14.5,0.8],[13.1,0.7],[12.5,0.6],
+   [15.5,0.3],[11.1,0.8],[12.4,0.7],
+   [14.4,0.4],[11.5,0.8],[16.9,1.5]],
+
+  // T2: 2 Piston Tutup-Tutup
+  [[14.7,0.2],[15.4,0.2],[17.1,0.2],
+   [17.1,1.0],[16.8,1.0],[15.7,1.0],
+   [16.1,0.6],[17.4,0.4],[15.8,0.6],
+   [15.8,0.8],[16.7,0.6],[14.6,1.0],
+   [14.8,1.0],[15.1,0.8],[16.5,0.8],
+   [21.0,0.4],[16.5,0.8],[17.3,1.0]],
+
+  // T3: 2 Piston Tutup-Buka
+  [[15.0,0.4],[16.1,0.4],[14.5,0.4],
+   [14.6,0.8],[13.9,0.8],[15.0,1.0],
+   [15.9,0.5],[15.3,0.5],[14.5,0.4],
+   [16.0,0.4],[18.1,0.2],[17.1,0.4],
+   [22.4,0.1],[15.7,0.4],[16.0,0.4],
+   [22.0,0.1],[21.0,0.2],[20.7,0.2]],
+];
+
+// ── STATE ──────────────────────────────────────
+let activeTab   = 0;
+let calcResults = null;
+let charts      = [null, null, null, null];
+
+// rowCounter[tabIdx][volIdx] = number of rows currently rendered
+const rowCounter = Array.from({ length: 4 }, () => Array(VOLUMES.length).fill(3));
+
+// ── INIT ───────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  buildAllPanels();
+  showTab(0);
+});
+
+// ── BUILD INPUT PANELS ────────────────────────
+function buildAllPanels() {
+  for (let t = 0; t < 4; t++) {
+    const wrap = document.getElementById(`tab-panel-${t}`);
+    wrap.innerHTML = '';
+    for (let v = 0; v < VOLUMES.length; v++) {
+      wrap.appendChild(buildVolPanel(t, v, 3));
+    }
+  }
+}
+
+function buildVolPanel(t, v, numRows) {
+  rowCounter[t][v] = numRows;
+
+  const panel = document.createElement('div');
+  panel.className = 'vol-panel';
+  panel.id = `vp-${t}-${v}`;
+
+  const header = document.createElement('div');
+  header.className = 'vol-header open';
+  header.innerHTML = `
+    <span class="vol-badge">V = ${VOLUMES[v]} mL</span>
+    <span class="vol-count" id="vc-${t}-${v}">${numRows} data</span>
+    <span class="vol-toggle open" id="vt-${t}-${v}">▲</span>
+  `;
+  header.onclick = () => toggleVol(t, v);
+
+  const body = document.createElement('div');
+  body.className = 'vol-body';
+  body.id = `vb-${t}-${v}`;
+
+  const rowsWrap = document.createElement('div');
+  rowsWrap.id = `rows-${t}-${v}`;
+  for (let d = 0; d < numRows; d++) {
+    rowsWrap.appendChild(makeDataRow(t, v, d));
+  }
+
+  const addBtn = document.createElement('button');
+  addBtn.className = 'btn-add-row';
+  addBtn.innerHTML = '+ Tambah Data';
+  addBtn.onclick = () => addRow(t, v);
+
+  body.appendChild(rowsWrap);
+  body.appendChild(addBtn);
+  panel.appendChild(header);
+  panel.appendChild(body);
+  return panel;
+}
+
+function makeDataRow(t, v, d) {
+  const row = document.createElement('div');
+  row.className = 'data-row';
+  row.id = `dr-${t}-${v}-${d}`;
+  row.innerHTML = `
+    <span class="row-num">${d + 1}</span>
+    <div class="data-input-group">
+      <span class="inp-label">f (Hz)</span>
+      <input type="number" step="any" id="f-${t}-${v}-${d}" placeholder="0.0">
+      <span class="inp-sep"></span>
+      <span class="inp-label">y (cm)</span>
+      <input type="number" step="any" id="y-${t}-${v}-${d}" placeholder="0.0">
+    </div>
+    <button class="btn-del" onclick="delRow(${t},${v},${d})" title="Hapus baris">×</button>
+  `;
+  return row;
+}
+
+function addRow(t, v) {
+  const d = rowCounter[t][v];
+  rowCounter[t][v]++;
+  document.getElementById(`rows-${t}-${v}`).appendChild(makeDataRow(t, v, d));
+  updateVolCount(t, v);
+}
+
+function delRow(t, v, d) {
+  const el = document.getElementById(`dr-${t}-${v}-${d}`);
+  if (!el) return;
+  if (rowCounter[t][v] <= 1) { showStatus('Minimal 1 data per volume'); return; }
+  el.remove();
+  rowCounter[t][v]--;
+  // Re-number remaining rows
+  const wrap = document.getElementById(`rows-${t}-${v}`);
+  [...wrap.querySelectorAll('.data-row')].forEach((r, i) => {
+    r.querySelector('.row-num').textContent = i + 1;
+  });
+  updateVolCount(t, v);
+}
+
+function updateVolCount(t, v) {
+  const el = document.getElementById(`vc-${t}-${v}`);
+  if (el) el.textContent = `${rowCounter[t][v]} data`;
+}
+
+function toggleVol(t, v) {
+  const body   = document.getElementById(`vb-${t}-${v}`);
+  const toggle = document.getElementById(`vt-${t}-${v}`);
+  const header = body.previousElementSibling;
+  const isOpen = !body.classList.contains('collapsed');
+  body.classList.toggle('collapsed', isOpen);
+  toggle.classList.toggle('open', !isOpen);
+  header.classList.toggle('open', !isOpen);
+  toggle.textContent = isOpen ? '▼' : '▲';
+}
+
+// ── TABS ──────────────────────────────────────
+function showTab(idx) {
+  activeTab = idx;
+  for (let t = 0; t < 4; t++) {
+    document.getElementById(`tab-panel-${t}`).style.display = t === idx ? 'block' : 'none';
+  }
+  document.querySelectorAll('.ptab').forEach((btn, i) => {
+    btn.classList.toggle('active', i === idx);
+  });
+}
+
+// ── FILL SAMPLE DATA ──────────────────────────
+function fillSample() {
+  for (let t = 0; t < 4; t++) {
+    let globalRow = 0;
+    for (let v = 0; v < VOLUMES.length; v++) {
+      const needed = 3;
+      // Rebuild panel with 3 rows first
+      const oldPanel = document.getElementById(`vp-${t}-${v}`);
+      const newPanel = buildVolPanel(t, v, needed);
+      oldPanel.replaceWith(newPanel);
+
+      for (let d = 0; d < needed; d++) {
+        const [f, y] = SAMPLE[t][globalRow++];
+        const fEl = document.getElementById(`f-${t}-${v}-${d}`);
+        const yEl = document.getElementById(`y-${t}-${v}-${d}`);
+        if (fEl) fEl.value = f;
+        if (yEl) yEl.value = y;
+      }
+    }
+  }
+  showStatus('Data contoh berhasil diisi!');
+}
+
+// ── CLEAR ALL ────────────────────────────────
+function clearAll() {
+  buildAllPanels();
+  document.getElementById('results-section').style.display = 'none';
+  calcResults = null;
+  showStatus('Data dibersihkan');
+}
+
+// ── READ INPUT VALUES ────────────────────────
+function readTableData(t) {
+  const rows = [];
+  for (let v = 0; v < VOLUMES.length; v++) {
+    const wrap = document.getElementById(`rows-${t}-${v}`);
+    const domRows = wrap ? [...wrap.querySelectorAll('.data-row')] : [];
+    const points = [];
+    domRows.forEach((_, d) => {
+      const fEl = document.getElementById(`f-${t}-${v}-${d}`);
+      const yEl = document.getElementById(`y-${t}-${v}-${d}`);
+      if (!fEl) return;
+      const f = parseFloat(fEl.value);
+      const y = parseFloat(yEl?.value ?? 0);
+      if (!isNaN(f) && f > 0) points.push({ f, y });
+    });
+    rows.push({ V_mL: VOLUMES[v], V_m3: VOLUMES[v] * 1e-6, points });
+  }
+  return rows;
+}
+
+// ── PHYSICS ──────────────────────────────────
+function getConst() {
+  return {
+    m1:   parseFloat(document.getElementById('inp-m1').value),
+    m2:   parseFloat(document.getElementById('inp-m2').value),
+    A:    parseFloat(document.getElementById('inp-A').value),
+    P:    parseFloat(document.getElementById('inp-P').value),
+    glit: parseFloat(document.getElementById('inp-glit').value),
+  };
+}
+
+function calcT2(f) { return 1 / (f * f); }
+
+function calcGamma(m, V_m3, T2, A, P) {
+  return (4 * Math.PI ** 2 * m * V_m3) / (A * A * T2 * P);
+}
+
+function linReg(xs, ys) {
+  const n = xs.length;
+  if (n < 2) return { slope: 0, intercept: ys[0] ?? 0, R2: 0 };
+  const mx = xs.reduce((a, x) => a + x, 0) / n;
+  const my = ys.reduce((a, y) => a + y, 0) / n;
+  const num = xs.reduce((a, x, i) => a + (x - mx) * (ys[i] - my), 0);
+  const den = xs.reduce((a, x) => a + (x - mx) ** 2, 0);
+  const slope = den !== 0 ? num / den : 0;
+  const intercept = my - slope * mx;
+  const ssTot = ys.reduce((a, y) => a + (y - my) ** 2, 0);
+  const ssRes = ys.reduce((a, y, i) => a + (y - (slope * xs[i] + intercept)) ** 2, 0);
+  const R2 = ssTot > 0 ? 1 - ssRes / ssTot : 1;
+  return { slope, intercept, R2 };
+}
+
+function processTable(t) {
+  const C    = getConst();
+  const m    = t < 2 ? C.m1 : C.m2;
+  const raw  = readTableData(t);
+  const rows = [];
+
+  for (const { V_mL, V_m3, points } of raw) {
+    if (points.length === 0) continue;
+
+    const items = points.map(p => {
+      const T  = 1 / p.f;
+      const T2 = T * T;
+      const g  = calcGamma(m, V_m3, T2, C.A, C.P);
+      return { f: p.f, y: p.y, T, T2, g };
+    });
+
+    const N      = items.length;
+    const T_avg  = items.reduce((s, i) => s + i.T,  0) / N;
+    const T2_avg = items.reduce((s, i) => s + i.T2, 0) / N;
+    const g_avg  = items.reduce((s, i) => s + i.g,  0) / N;
+
+    let dg = 0;
+    if (N > 1) {
+      const sq = items.reduce((s, i) => s + (i.g - g_avg) ** 2, 0);
+      dg = Math.sqrt(sq / (N * (N - 1)));
+    }
+
+    rows.push({ V_mL, V_m3, items, T_avg, T2_avg, g_avg, dg, N });
+  }
+
+  // Regression T² vs V
+  const xs  = rows.map(r => r.V_m3);
+  const ys  = rows.map(r => r.T2_avg);
+  const reg = linReg(xs, ys);
+
+  const g_total  = rows.reduce((s, r) => s + r.g_avg, 0) / rows.length;
+  const g_grafik = (4 * Math.PI ** 2 * m) / (C.A * C.A * C.P * reg.slope);
+  const ksr_hit  = Math.abs((g_total  - C.glit) / C.glit) * 100;
+  const ksr_graf = Math.abs((g_grafik - C.glit) / C.glit) * 100;
+
+  return { rows, reg, g_total, g_grafik, ksr_hit, ksr_graf, m };
+}
+
+// ── CALCULATE ────────────────────────────────
+function calculate() {
+  calcResults = [];
+  for (let t = 0; t < 4; t++) calcResults.push(processTable(t));
+
+  document.getElementById('results-section').style.display = 'block';
+  renderResultTab();
+  renderAllCharts();
+  showStatus('Perhitungan selesai!');
+  setTimeout(() => {
+    document.getElementById('results-section').scrollIntoView({ behavior: 'smooth' });
+  }, 80);
+}
+
+// ── RENDER RESULT TABLE ───────────────────────
+function renderResultTab() {
+  const idx = parseInt(document.getElementById('result-tab-sel').value);
+  const res = calcResults?.[idx];
+  if (!res) return;
+
+  // Build table: each row = 1 data point (not averaged per volume)
+  let html = `<div class="table-scroll"><table class="result-tbl">
+    <thead>
+      <tr>
+        <th>V (mL)</th>
+        <th>V (m³)</th>
+        <th>#</th>
+        <th>f (Hz)</th>
+        <th>y (cm)</th>
+        <th>T (s)</th>
+        <th>T² (s²)</th>
+        <th>γᵢ</th>
+      </tr>
+      <tr>
+        <th colspan="2" style="color:var(--accent);letter-spacing:1px;">RATA-RATA PER VOLUME</th>
+        <th>N</th>
+        <th colspan="2">—</th>
+        <th>T̄ (s)</th>
+        <th>T̄² (s²)</th>
+        <th>γ̄ ± Δγ</th>
+      </tr>
+    </thead><tbody>`;
+
+  for (const row of res.rows) {
+    // Individual data rows
+    row.items.forEach((it, i) => {
+      html += `<tr>
+        ${i === 0 ? `<td class="td-vol" rowspan="${row.items.length}">${row.V_mL}</td>
+                     <td class="td-dim" rowspan="${row.items.length}">${row.V_m3.toExponential(2)}</td>` : ''}
+        <td class="td-dim">${i + 1}</td>
+        <td>${it.f.toFixed(2)}</td>
+        <td>${it.y.toFixed(2)}</td>
+        <td>${it.T.toFixed(5)}</td>
+        <td>${it.T2.toExponential(4)}</td>
+        <td>${it.g.toFixed(4)}</td>
+      </tr>`;
+    });
+
+    // Average row
+    html += `<tr style="background:rgba(79,255,176,0.04);border-top:1px solid rgba(79,255,176,0.15);">
+      <td class="td-hi" colspan="2">Rata-rata (V=${row.V_mL} mL)</td>
+      <td class="td-dim">${row.N}</td>
+      <td colspan="2" class="td-dim">—</td>
+      <td class="td-hi">${row.T_avg.toFixed(5)}</td>
+      <td class="td-hi">${row.T2_avg.toExponential(4)}</td>
+      <td class="td-hi">${row.g_avg.toFixed(4)} ± ${row.dg.toFixed(4)}</td>
+    </tr>`;
+  }
+
+  html += '</tbody></table></div>';
+  document.getElementById('result-table-area').innerHTML = html;
+
+  // Summary
+  const C = getConst();
+  document.getElementById('summary-row').innerHTML = `
+    <div class="summary-box">
+      <div class="sb-label">γ Hitung</div>
+      <div class="sb-value">${res.g_total.toFixed(4)}</div>
+      <div class="sb-unit">rata-rata semua</div>
+    </div>
+    <div class="summary-box sb-ksr">
+      <div class="sb-label">KSR Hitung</div>
+      <div class="sb-value">${res.ksr_hit.toFixed(2)}%</div>
+      <div class="sb-unit">vs γ lit ${C.glit}</div>
+    </div>
+    <div class="summary-box sb-graf">
+      <div class="sb-label">γ Grafik</div>
+      <div class="sb-value">${res.g_grafik.toFixed(4)}</div>
+      <div class="sb-unit">dari slope regresi</div>
+    </div>
+    <div class="summary-box sb-ksr">
+      <div class="sb-label">KSR Grafik</div>
+      <div class="sb-value">${res.ksr_graf.toFixed(2)}%</div>
+      <div class="sb-unit">vs γ lit ${C.glit}</div>
+    </div>
+    <div class="summary-box">
+      <div class="sb-label">Slope (a)</div>
+      <div class="sb-value" style="font-size:13px;">${res.reg.slope.toExponential(3)}</div>
+      <div class="sb-unit">T²= aV + b</div>
+    </div>
+    <div class="summary-box sb-r2">
+      <div class="sb-label">R²</div>
+      <div class="sb-value">${res.reg.R2.toFixed(4)}</div>
+      <div class="sb-unit">koefisien determinasi</div>
+    </div>
+  `;
+}
+
+// ── CHARTS ───────────────────────────────────
+function renderAllCharts() {
+  for (let i = 0; i < 4; i++) {
+    if (charts[i]) { charts[i].destroy(); charts[i] = null; }
+    renderChart(i);
+  }
+}
+
+function renderChart(idx) {
+  const res = calcResults[idx];
+  if (!res || res.rows.length === 0) return;
+
+  const xs = res.rows.map(r => r.V_m3);
+  const ys = res.rows.map(r => r.T2_avg);
+  const xMin = Math.min(...xs), xMax = Math.max(...xs);
+  const { slope: a, intercept: b, R2 } = res.reg;
+
+  const ctx = document.getElementById(`chart${idx}`).getContext('2d');
+  charts[idx] = new Chart(ctx, {
+    data: {
+      datasets: [
+        {
+          type: 'scatter',
+          label: 'T̄² rata-rata',
+          data: xs.map((x, i) => ({ x, y: ys[i] })),
+          backgroundColor: '#4fffb0',
+          pointRadius: 5,
+          pointHoverRadius: 7,
+        },
+        {
+          type: 'line',
+          label: `y=${a.toExponential(2)}x+${b.toExponential(2)}, R²=${R2.toFixed(3)}`,
+          data: [{ x: xMin, y: a * xMin + b }, { x: xMax, y: a * xMax + b }],
+          borderColor: '#4fc3ff',
+          borderWidth: 1.5,
+          borderDash: [5, 4],
+          pointRadius: 0,
+          fill: false,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { labels: { color: '#8892a4', font: { size: 9 }, boxWidth: 12 } },
+      },
+      scales: {
+        x: {
+          type: 'linear',
+          title: { display: true, text: 'V (m³)', color: '#555f75', font: { size: 10 } },
+          ticks: { color: '#555f75', font: { size: 9 } },
+          grid:  { color: '#1a1e28' },
+        },
+        y: {
+          title: { display: true, text: 'T² (s²)', color: '#555f75', font: { size: 10 } },
+          ticks: { color: '#555f75', font: { size: 9 } },
+          grid:  { color: '#1a1e28' },
+        },
+      },
+    },
+  });
+}
+
+// ── EXPORT EXCEL ─────────────────────────────
+function exportExcel() {
+  if (!calcResults) { alert('Hitung dulu!'); return; }
+  const C  = getConst();
+  const wb = XLSX.utils.book_new();
+
+  for (let t = 0; t < 4; t++) {
+    const res  = calcResults[t];
+    const data = [];
+
+    data.push([TAB_NAMES[t]]);
+    data.push([`m = ${res.m} kg`, `A = ${C.A} m²`, `P = ${C.P} Pa`, `γ lit = ${C.glit}`]);
+    data.push([]);
+
+    // Header
+    data.push(['V (mL)', 'V (m³)', 'Data ke-', 'f (Hz)', 'y (cm)', 'T (s)', 'T² (s²)', 'γᵢ']);
+
+    for (const row of res.rows) {
+      row.items.forEach((it, i) => {
+        data.push([
+          i === 0 ? row.V_mL : '',
+          i === 0 ? row.V_m3 : '',
+          i + 1,
+          it.f, it.y,
+          it.T.toFixed(6),
+          it.T2.toExponential(6),
+          it.g.toFixed(5),
+        ]);
+      });
+      data.push([
+        `Rata² V=${row.V_mL} mL`, '', `N=${row.N}`, '', '',
+        row.T_avg.toFixed(6),
+        row.T2_avg.toExponential(6),
+        `${row.g_avg.toFixed(5)} ± ${row.dg.toFixed(5)}`,
+      ]);
+      data.push([]);
+    }
+
+    data.push(['RINGKASAN']);
+    data.push(['γ Hitung (rata²)',  res.g_total.toFixed(5)]);
+    data.push(['KSR Hitung',        `${res.ksr_hit.toFixed(3)}%`]);
+    data.push(['Slope (a)',          res.reg.slope.toExponential(5)]);
+    data.push(['Intercept (b)',      res.reg.intercept.toExponential(5)]);
+    data.push(['R²',                 res.reg.R2.toFixed(5)]);
+    data.push(['γ Grafik',           res.g_grafik.toFixed(5)]);
+    data.push(['KSR Grafik',        `${res.ksr_graf.toFixed(3)}%`]);
+
+    const ws = XLSX.utils.aoa_to_sheet(data);
+    XLSX.utils.book_append_sheet(wb, ws, TAB_NAMES[t].replace(/[\s–]+/g, '_').substring(0, 28));
+  }
+
+  XLSX.writeFile(wb, 'Pengolahan_Data_M5.xlsx');
+  showStatus('Excel berhasil didownload!');
+}
+
+// ── EXPORT IMAGE ──────────────────────────────
+function exportImage() {
+  if (!calcResults) { alert('Hitung dulu!'); return; }
+  const C  = getConst();
+  const W  = 1200, H = 720;
+  const oc = document.createElement('canvas');
+  oc.width = W; oc.height = H;
+  const ctx = oc.getContext('2d');
+
+  ctx.fillStyle = '#13161d';
+  ctx.fillRect(0, 0, W, H);
+
+  ctx.fillStyle = '#4fffb0';
+  ctx.font = 'bold 15px monospace';
+  ctx.fillText('M-5 Resonansi Elastis Gas – Grafik T² vs V', 20, 26);
+  ctx.fillStyle = '#555f75';
+  ctx.font = '11px monospace';
+  ctx.fillText(`m₁=${C.m1} kg  m₂=${C.m2} kg  A=${C.A} m²  P=${C.P} Pa  γ lit=${C.glit}`, 20, 46);
+
+  const positions = [[0,60,580,310],[600,60,580,310],[0,390,580,310],[600,390,580,310]];
+  const names = TAB_NAMES;
+
+  for (let i = 0; i < 4; i++) {
+    const [x, y, w, h] = positions[i];
+    ctx.fillStyle = '#1a1e28';
+    ctx.fillRect(x + 10, y, w - 20, h);
+    ctx.strokeStyle = '#252a38';
+    ctx.strokeRect(x + 10, y, w - 20, h);
+
+    ctx.fillStyle = '#8892a4';
+    ctx.font = '10px monospace';
+    ctx.fillText(names[i], x + 18, y + 16);
+
+    const chartCanvas = document.getElementById(`chart${i}`);
+    if (chartCanvas) ctx.drawImage(chartCanvas, x + 10, y + 22, w - 20, h - 34);
+
+    const res = calcResults[i];
+    ctx.fillStyle = '#4fc3ff';
+    ctx.font = '9px monospace';
+    ctx.fillText(
+      `a=${res.reg.slope.toExponential(3)}  R²=${res.reg.R2.toFixed(3)}  γ=${res.g_grafik.toFixed(3)}  KSR=${res.ksr_graf.toFixed(1)}%`,
+      x + 18, y + h - 6
+    );
+  }
+
+  const link = document.createElement('a');
+  link.download = 'Grafik_M5_ResonansiGas.png';
+  link.href = oc.toDataURL('image/png');
+  link.click();
+  showStatus('Gambar berhasil didownload!');
+}
+
+// ── STATUS ───────────────────────────────────
+function showStatus(msg) {
+  const bar = document.getElementById('status-bar');
+  bar.textContent = '✓ ' + msg;
+  bar.style.display = 'block';
+  clearTimeout(bar._timer);
+  bar._timer = setTimeout(() => { bar.style.display = 'none'; }, 3000);
 }
