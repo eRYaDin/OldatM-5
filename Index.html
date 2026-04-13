@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>M-5 Resonansi Elastis Gas</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- External Libraries -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- ══ HEADER ══════════════════════════════════════════ -->
+<header>
+  <div class="badge">⬡ Eksperimen Fisika Lanjut · M-5</div>
+  <h1>Resonansi Elastis Gas</h1>
+  <p>Pengolahan Data Otomatis · T, γ, KSR, Grafik T² vs V</p>
+</header>
+
+<main>
+
+  <!-- ══ KONSTANTA ══════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Konstanta Eksperimen</div>
+    <div class="constants-grid">
+      <div class="const-item">
+        <div class="const-label">m₁ — massa 1 piston (kg)</div>
+        <input class="const-input" type="number" step="any" id="inp-m1" value="0.008852">
+      </div>
+      <div class="const-item">
+        <div class="const-label">m₂ — massa 2 piston (kg)</div>
+        <input class="const-input" type="number" step="any" id="inp-m2" value="0.0088711">
+      </div>
+      <div class="const-item">
+        <div class="const-label">A — luas penampang (m²)</div>
+        <input class="const-input" type="number" step="any" id="inp-A" value="0.00015">
+      </div>
+      <div class="const-item">
+        <div class="const-label">P — tekanan udara (Pa)</div>
+        <input class="const-input" type="number" step="any" id="inp-P" value="102700">
+      </div>
+      <div class="const-item">
+        <div class="const-label">γ literatur</div>
+        <input class="const-input" type="number" step="any" id="inp-glit" value="1.67" style="color:var(--accent3)">
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ INPUT DATA ═════════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Input Data Eksperimen</div>
+
+    <!-- Tab selector -->
+    <div class="piston-tabs">
+      <button class="ptab active" onclick="showTab(0)">1 Piston · Tutup–Tutup</button>
+      <button class="ptab"        onclick="showTab(1)">1 Piston · Tutup–Buka</button>
+      <button class="ptab"        onclick="showTab(2)">2 Piston · Tutup–Tutup</button>
+      <button class="ptab"        onclick="showTab(3)">2 Piston · Tutup–Buka</button>
+    </div>
+
+    <!-- Tab panels (built by JS) -->
+    <div id="tab-panel-0"></div>
+    <div id="tab-panel-1" style="display:none;"></div>
+    <div id="tab-panel-2" style="display:none;"></div>
+    <div id="tab-panel-3" style="display:none;"></div>
+
+    <!-- Actions -->
+    <div class="btn-row">
+      <button class="btn btn-primary" onclick="calculate()">⚡ Hitung Semua</button>
+      <button class="btn btn-ghost"   onclick="fillSample()">📋 Isi Data Contoh</button>
+      <button class="btn btn-ghost"   onclick="clearAll()">🗑 Bersihkan</button>
+    </div>
+  </div>
+
+  <!-- ══ RESULTS (hidden until calc) ═══════════════════ -->
+  <div id="results-section" style="display:none;">
+
+    <!-- Result table -->
+    <div class="section">
+      <div class="section-title">Tabel Hasil Perhitungan</div>
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px; flex-wrap:wrap;">
+        <span style="font-size:12px; color:var(--text2);">Tampilkan:</span>
+        <select class="styled-sel" id="result-tab-sel" onchange="renderResultTab()">
+          <option value="0">1 Piston – Tutup Tutup</option>
+          <option value="1">1 Piston – Tutup Buka</option>
+          <option value="2">2 Piston – Tutup Tutup</option>
+          <option value="3">2 Piston – Tutup Buka</option>
+        </select>
+      </div>
+
+      <div id="result-table-area"></div>
+      <div class="summary-row" id="summary-row"></div>
+    </div>
+
+    <!-- Charts -->
+    <div class="section">
+      <div class="section-title">Grafik T² vs V</div>
+      <div class="charts-grid">
+        <div class="chart-card">
+          <div class="chart-card-title">1 Piston – Tutup Tutup</div>
+          <canvas id="chart0"></canvas>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card-title">1 Piston – Tutup Buka</div>
+          <canvas id="chart1"></canvas>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card-title">2 Piston – Tutup Tutup</div>
+          <canvas id="chart2"></canvas>
+        </div>
+        <div class="chart-card">
+          <div class="chart-card-title">2 Piston – Tutup Buka</div>
+          <canvas id="chart3"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Export -->
+    <div class="section">
+      <div class="section-title">Export Hasil</div>
+      <div class="btn-row">
+        <button class="btn btn-primary"   onclick="exportExcel()">📊 Download Excel (.xlsx)</button>
+        <button class="btn btn-secondary" onclick="exportImage()">🖼 Download Grafik (PNG)</button>
+      </div>
+    </div>
+
+  </div><!-- /results-section -->
+
+</main>
+
+<div class="status-bar" id="status-bar"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
